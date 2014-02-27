@@ -51,19 +51,6 @@ function frontend_icon_picker_scripts() {
 add_action( 'wp_enqueue_scripts', 'frontend_icon_picker_scripts' );
 ```
 
-First, include both the dashicons-picker.css and dashicons-picker.js files:
-
-```
-function dashicons_picker_scripts() {
-	$css = plugin_dir_url( __FILE__ ) . 'css/dashicons-picker.css';
-    wp_enqueue_style( 'dashicons-picker', $css, array( 'dashicons' ), '1.0' );
-
-	$js = plugin_dir_url( __FILE__ ) . 'js/dashicons-picker.js';
-	wp_enqueue_script( 'dashicons-picker', $js, array( 'jquery' ), '1.0' );
-}
-add_action( 'admin_enqueue_scripts', 'dashicons_picker_scripts' );</pre>
-```
-
 ## Options Page ##
 
 In the HTML of your plugin Options/Settings page just include the class of "icon-picker" and include a data-target attribute which stores the selector.
