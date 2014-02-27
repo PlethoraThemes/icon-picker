@@ -81,10 +81,10 @@ If you prefer to use a class-based settings that utilizes the WP Settings API it
     	echo $html;
     }
 ```
-Notice that the value is being exploded!  The selection is stored as a comma-delimited list such as "fa,fa-inbox" and needs tob exploded into an array:
+Notice that the value is being exploded!  The selection is stored as a comma-delimited list such as "fa,fa-inbox" and needs to be exploded into an array:
 
 ```
-	$value = array([0]=>'fa',[1]=>'fa-inbox');
+	$value = explode(',',$value); //--> array([0]=>'fa',[1]=>'fa-inbox');
 	$font = $value[0];
 	$icon = $value[1];
 ```
