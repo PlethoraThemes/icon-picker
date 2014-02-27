@@ -18,7 +18,7 @@ The icon fonts are not included, because you may already have them:
 First, you need to make sure the icon fonts and scripts are are enqueued on the admin screen:
 
 ```
-function admin_icon_picker_scripts() {
+function your_settings_icon_picker_scripts() {
  /* On WP 3.8+ dashicons do not need to be enqueued in the admin area   
     $font1 = plugin_dir_url( __FILE__ ) . 'fonts/dashicons/css/dashicons.css';
  	wp_enqueue_script( 'dashicons', $font1, '', '');
@@ -35,8 +35,15 @@ function admin_icon_picker_scripts() {
     $js = plugin_dir_url( __FILE__ ) . '/js/icon-picker.js';
     wp_enqueue_script( 'dashicons-picker', $js, array( 'jquery' ), '1.0' );
 }
-add_action( 'admin_enqueue_scripts', 'admin_icon_picker_scripts' );
+// Make sure we only enqueue on our options page //
+global $pagenow;
+if ($pagenow=="options-general.php" && isset( $_GET['page'] ) && $_GET['page'] == 'your_settings_page'  ) {
+add_action( 'admin_enqueue_scripts', 'your_settings_icon_picker_scripts' );
 ```
+Note the check for what page we are on!  Without this check if you have multiple plugins that invoke the Icon Picker you would get 
+multiple instances of it on each select button click.  Multiple instances don't stop it from functioning, but there's no reason to 
+create multiple picker dialogs. 
+
 In order to actually display the icons on the front-end of your blog you also need to enqueue them there (either in your plugin or theme functions)
 
 ```

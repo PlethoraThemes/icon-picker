@@ -31,7 +31,11 @@ function icon_picker_scripts() {
     $js = plugin_dir_url( __FILE__ ) . '/js/icon-picker.js';
     wp_enqueue_script( 'dashicons-picker', $js, array( 'jquery' ), '1.0' );
 }
-add_action( 'admin_enqueue_scripts', 'icon_picker_scripts' );
+// Make sure we only enqueue on our options page //
+global $pagenow;
+if ($pagenow=="options-general.php" && isset( $_GET['page'] ) && $_GET['page'] == 'icon_picker_settings'  ) {
+	add_action( 'admin_enqueue_scripts', 'icon_picker_scripts' );
+}
 
 function icon_picker_settings_page() {
 	$options = get_option( 'icon_picker_settings' ); ?>
