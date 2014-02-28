@@ -73,7 +73,7 @@ If you prefer to use a class-based settings that utilizes the WP Settings API it
     function callback_icon( $args ) {
     	$value = esc_attr( $this->get_option( $args['id'], $args['section'], $args['std'] ) );
     	$size = isset( $ars['size'] ) && !is_null( $args['size'] ) ? $args['size'] : 'regular';
- 		if ($value != '') { $preview = explode(',',$value); } else { $preview = array('','');};
+ 		if ($value != '') { $preview = explode('|',$value); } else { $preview = array('','');};
     	
     	$html = sprintf( '<input class="%1$s-text" id="%2$s_%3$s" name="%2$s[%3$s]" type="hidden" value="'.$value.'"  />', $size, $args['section'], $args['id'], $value );
 		$html .= sprintf( '<div id="preview_%2$s_%3$s" class="button icon-picker '.$preview[0].' '.$preview[1].'" data-target="#%2$s_%3$s"></div>',$size, $args['section'], $args['id'], $value);
@@ -81,10 +81,10 @@ If you prefer to use a class-based settings that utilizes the WP Settings API it
     	echo $html;
     }
 ```
-Notice that the value is being exploded!  The selection is stored as a comma-delimited list such as "fa,fa-inbox" and needs to be exploded into an array:
+Notice that the value is being exploded!  The selection is stored as a pipe-separated list such as "fa|fa-inbox" and needs to be exploded into an array:
 
 ```
-	$value = explode(',',$value); //--> array([0]=>'fa',[1]=>'fa-inbox');
+	$value = explode('|',$value); //--> array([0]=>'fa',[1]=>'fa-inbox');
 	$font = $value[0];
 	$icon = $value[1];
 ```
