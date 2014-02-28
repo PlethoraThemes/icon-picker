@@ -51,7 +51,7 @@ function icon_picker_settings_page() {
 					</th>
 					<td>
 						<input class="regular-text" type="hidden" id="icon_picker_example_icon1" name="icon_picker_settings[icon1]" value="<?php if( isset( $options['icon1'] ) ) { echo esc_attr( $options['icon1'] ); } ?>"/>
-						<div id="preview_icon_picker_example_icon1" data-target="#icon_picker_example_icon1" class="button icon-picker <?php if( isset( $options['icon1'] ) ) { $v=explode(',',$options['icon1']); echo $v[0].' '.$v[1]; } ?>"></div>
+						<div id="preview_icon_picker_example_icon1" data-target="#icon_picker_example_icon1" class="button icon-picker <?php if( isset( $options['icon1'] ) ) { $v=explode('|',$options['icon1']); echo $v[0].' '.$v[1]; } ?>"></div>
 						&lt;&lt; this button will show your selection, go on press it!  You know you want to.
 					</td>
 				</tr>
