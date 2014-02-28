@@ -717,7 +717,7 @@
 				$('a', $list).click(function(e) {
 					e.preventDefault();
 					var title = $(this).attr("title");
-					$target.val(options[0]+","+options[1]+"-"+title);
+					$target.val(options[0]+"|"+options[1]+"-"+title);
 					$button.removeClass().addClass("button icon-picker "+options[0]+" "+options[1]+"-"+title);
 					removePopup();
 				});
