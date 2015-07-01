@@ -1,13 +1,15 @@
-/* Icon Picker */
+/*** Icon Picker: https://github.com/PlethoraThemes/icon-picker/blob/plethora-framework/js/icon-picker.js ***/
 
 (function($) {
 
 	$.fn.iconPicker = function( options ) {
-		var options = ['dashicons','dashicons']; // default font set
+		var options = ['fa','dashicons']; // default font set
 		var icons;
 		$list = $('');
 		function font_set() {
+
 			if (options[0] == 'dashicons') {
+				// DashIcons (Included with WP 3.6+)
 				icons = [
 					"blank",	// there is no "blank" but we need the option
 					"menu",
@@ -177,6 +179,7 @@
 				]; 
 				options[1] = 'dashicons';
 			} else if (options[0] == 'fa') {
+			// FontAwesome Icons
 			icons = [
 				"blank",
 				// Mail
@@ -569,6 +572,7 @@
 			];
 			options[1] = "fa";
 		} else {
+			// Generic Icons
 			icons = [
 				"blank",
 				"standard",
@@ -748,11 +752,22 @@
 					});
 				build_list($popup,$button,0);
 				var $control = $popup.find('.icon-picker-control');
-				$control.html('<p>Select Font: <select><option value="dashicons">Dashicons</option><option value="fa">Font Awesome</option><option value="genericon">Genericons</option></select></p>'+
-				'<a data-direction="back" href="#"><span class="dashicons dashicons-arrow-left-alt2"></span></a> '+
+
+				/*
+				var pick_options  = '<p>Select Font: <select>';
+					pick_options += '<option value="fa">Font Awesome</option>';
+					pick_options += '<option value="dashicons">Dashicons</option>';
+					// pick_options +='<option value="genericon">Genericons</option>';
+					pick_options += '</select></p>';
+				*/
+
+				// Selectable Fonts Disabled [1.2] To Enable concatenate with pick_options var above
+				var	pick_options = '<a data-direction="back" href="#"><span class="dashicons dashicons-arrow-left-alt2"></span></a> '+
 				'<input type="text" class="" placeholder="Search" />'+
 				'<a data-direction="forward" href="#"><span class="dashicons dashicons-arrow-right-alt2"></span></a>'+
-				'');
+				'';
+
+				$control.html( pick_options );
 
 				$('select', $control).on('change', function(e) {
 					e.preventDefault();
@@ -805,7 +820,6 @@
 				});
 			}
 	}
-
 
 	$(function() {
 		$('.icon-picker').iconPicker();
